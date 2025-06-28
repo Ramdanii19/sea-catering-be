@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscriptions",
+  "info": {
+    "singularName": "subscription",
+    "pluralName": "subscriptions",
+    "displayName": "subscription"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "users_permissions_users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "subscription"
+    },
+    "phone_number": {
+      "type": "string"
+    },
+    "meal_plans": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::meal-plan.meal-plan",
+      "inversedBy": "subscriptions"
+    },
+    "meal_type": {
+      "type": "enumeration",
+      "enum": [
+        "Breakfast",
+        "Lunch",
+        "Dinner"
+      ]
+    },
+    "delivery_days": {
+      "type": "string"
+    },
+    "allergies": {
+      "type": "string"
+    },
+    "status_subscription": {
+      "type": "string"
+    },
+    "end_date": {
+      "type": "date"
+    },
+    "pause_periode_start": {
+      "type": "date"
+    },
+    "pause_periode_end": {
+      "type": "date"
+    }
+  }
+}
