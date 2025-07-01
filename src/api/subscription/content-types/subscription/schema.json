@@ -11,28 +11,19 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "users_permissions_users": {
+    "users_permissions_user": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
-      "mappedBy": "subscription"
+      "inversedBy": "subscriptions"
     },
     "phone_number": {
       "type": "string"
     },
-    "meal_plans": {
+    "meal_plan": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::meal-plan.meal-plan",
-      "inversedBy": "subscriptions"
-    },
-    "meal_type": {
-      "type": "enumeration",
-      "enum": [
-        "Breakfast",
-        "Lunch",
-        "Dinner"
-      ]
+      "relation": "oneToOne",
+      "target": "api::meal-plan.meal-plan"
     },
     "delivery_days": {
       "type": "string"
@@ -51,6 +42,12 @@
     },
     "pause_periode_end": {
       "type": "date"
+    },
+    "total_harga": {
+      "type": "decimal"
+    },
+    "meal_type": {
+      "type": "json"
     }
   }
 }

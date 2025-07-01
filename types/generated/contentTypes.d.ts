@@ -433,10 +433,6 @@ export interface ApiMealPlanMealPlan extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String;
     price: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
-    subscriptions: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::subscription.subscription'
-    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -467,21 +463,22 @@ export interface ApiSubscriptionSubscription
       'api::subscription.subscription'
     > &
       Schema.Attribute.Private;
-    meal_plans: Schema.Attribute.Relation<
-      'manyToMany',
+    meal_plan: Schema.Attribute.Relation<
+      'oneToOne',
       'api::meal-plan.meal-plan'
     >;
-    meal_type: Schema.Attribute.Enumeration<['Breakfast', 'Lunch', 'Dinner']>;
+    meal_type: Schema.Attribute.JSON;
     pause_periode_end: Schema.Attribute.Date;
     pause_periode_start: Schema.Attribute.Date;
     phone_number: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     status_subscription: Schema.Attribute.String;
+    total_harga: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    users_permissions_users: Schema.Attribute.Relation<
-      'oneToMany',
+    users_permissions_user: Schema.Attribute.Relation<
+      'manyToOne',
       'plugin::users-permissions.user'
     >;
   };
@@ -1006,8 +1003,8 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    subscription: Schema.Attribute.Relation<
-      'manyToOne',
+    subscriptions: Schema.Attribute.Relation<
+      'oneToMany',
       'api::subscription.subscription'
     >;
     testimonials: Schema.Attribute.Relation<

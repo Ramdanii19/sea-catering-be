@@ -72,11 +72,11 @@
       "target": "api::testimonial.testimonial",
       "mappedBy": "users_permissions_user"
     },
-    "subscription": {
+    "subscriptions": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToMany",
       "target": "api::subscription.subscription",
-      "inversedBy": "users_permissions_users"
+      "mappedBy": "users_permissions_user"
     }
   }
 }

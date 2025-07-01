@@ -16,12 +16,6 @@
     },
     "price": {
       "type": "decimal"
-    },
-    "subscriptions": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::subscription.subscription",
-      "mappedBy": "meal_plans"
     }
   }
 }
